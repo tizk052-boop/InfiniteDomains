@@ -1,0 +1,25 @@
+Act as an expert Luau (Roblox Luau) developer specializing in highly optimized competitive PvP and exploit script engineering. I need you to write a high-performance "Steal a Brainrot" (SAB) Duel Script modeled after the functionality of premium frameworks like Ace Duels. 
+
+The script must be entirely modular, safe to run via standard modern executors, and explicitly split into client-side predictive logic and server-side state confirmation where applicable. Follow these absolute constraints and feature requirements:
+
+1. TARGET SELECTION & AIMSIST LOGIC (LOCK-ON)
+- Smooth Camera Interpolation: Implement a customizable smoothing factor (Smoothness) using CFrame:Lerp() or TweenService to simulate natural movement.
+- Hitbox Prioritization: Allow a toggle between locking onto the target's Head, HumanoidRootPart, or the closest part to the local player's cursor.
+- Field of View (FOV) Check: Include an adjustable circular FOV constraint. The script must only consider targets whose HumanoidRootPart falls within this 2D screen radius. Draw this visually using the Drawing API (circle outline, customizable color, thickness, and transparency).
+- Visibility Check (Wall Check): Use workspace:Raycast() or WorldRoot:FindPartOnRayWithIgnoreList(). The script must verify a direct line of sight exists between the local player and the target, ignoring the player's own character models, transparent barriers, or non-collidable parts.
+
+2. COMBAT & SAB REACTION LOGIC (THE "ACE DUELS" SPECIALTY)
+- Auto-Click / Weapon Swing: When a target is successfully locked and within a designated maximum combat range, automatically trigger the attack tool's activated state (simulating or directly firing the tool's RemoteEvent/RemoteFunction).
+- Frame-Perfect Brainrot Stealing: The moment an opponent's "Brainrot" item or ball becomes unsecured, vulnerable, or drops within a certain radius, automatically teleport the player's proximity/interact prompt or fire the corresponding grab network event to claim it instantly.
+- Predictive Target Switching: If multiple enemies are present, prioritize the opponent with the lowest Health ratio or the closest physical distance. The transition between targets must happen instantly upon the current target's death.
+
+3. MOVEMENT & SURVIVAL OPTIMIZATION
+- Anti-Aim / Desync Emulation: Provide a toggle to rapidly shift or offset the local HumanoidRootPart's CFrame or Velocity by a microscopic, random amount to make the player a harder target for opposing aimbots without triggering local physics rubberbanding.
+- Velocity Prediction: The aimlock must calculate the target's current Humanoid.MoveDirection and Velocity to predict where their hitbox will be based on network ping, ensuring attacks land even if the target is fast-moving (e.g., using speed multipliers or potions).
+
+4. NETWORK & PERFORMANCE ARCHITECTURE
+- Task Scheduler Integration: Use 'task.spawn', 'task.defer', and bind heavy loops to 'RunService.RenderStepped' (for camera locking) and 'RunService.Heartbeat' (for raycasting/physics calculations) to maintain maximum FPS.
+- Garbage Collection & Performance: Ensure all connections (:Connect) are stored in a table and properly disconnected (:Disconnect) when toggled off. Destroy all Drawing API elements upon script termination to completely avoid memory leaks.
+- Keybind & UI Hooking: Write the script with clean variable definitions at the top (e.g., _G.AimbotEnabled, _G.FOVSize, _G.AimKey) so it can easily map to a standard UI library toggle.
+
+Provide the complete, production-ready Luau script. Focus heavily on speed, bypassing standard player latency, and minimizing script execution errors.
